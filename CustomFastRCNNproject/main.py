@@ -296,7 +296,7 @@ if train_model:
                     pred_boxes = outputs[j]['boxes']
                     target_boxes = targets[j]['boxes']
                     iou = box_iou(pred_boxes, target_boxes)
-                    print(iou)
+                    # print(iou)
                     iou_mean = torch.mean(iou)
                     if torch.isnan(iou_mean):
                         continue
@@ -310,7 +310,7 @@ else:
     
     label = ['background','people']
     model.eval()
-    img_path ="../RCNN_sample_project/PennFudanPed/PNGImages/FudanPed00006.png"
+    img_path ="../RCNN_sample_project/PennFudanPed/PNGImages/FudanPed00001.png"
 
     """------------------model eval one shot--------------------"""
     img = Image.open(img_path)
@@ -330,7 +330,7 @@ else:
                             width=1)
 
     im = to_pil_image(box.detach())
-    im.show()
+    im.save("sample.jpg")
 
     """------------------model eval batch mIOU--------------------"""
     with torch.no_grad():
